@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637891547577554741
-    m_Hash: 484373180
+      ticks: 637891556057957614
+    m_Hash: 3797008411
   m_LockFileStatus:
     m_FilePath: C:/Users/Exmachine/source/repos/KithenNotes/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637891547577724728
-    m_Hash: 3697952518
+      ticks: 637891556057967627
+    m_Hash: 3062220839
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
