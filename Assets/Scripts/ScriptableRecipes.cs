@@ -99,5 +99,5 @@ public class IngredientData
     [SerializeField]
     private Ingredient ingredient;
     [SerializeField]
-    private float weight;
+    private double weight;
 }
