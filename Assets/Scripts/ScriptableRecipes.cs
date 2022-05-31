@@ -73,8 +73,7 @@ public class RecipeSet
 [System.Serializable]
 public class Recipe
 {
-    private int id;
-    private static int counter = 0;
+    public int id;
     [SerializeField]
     private string recipeName;
     [SerializeField]
@@ -92,12 +91,6 @@ public class Recipe
     private int cookingTime;
     [SerializeField]
     private List<IngredientData> ingredients;
-
-    public Recipe()
-    {
-        id = counter;
-        counter++;
-    }
 }
 
 [System.Serializable]

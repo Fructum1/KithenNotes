@@ -32,16 +32,9 @@ public class ScriptableIngredient : ScriptableObject
 [System.Serializable]
 public class Ingredient
 {
-    private static int counter = 0;
     public int id;
     [SerializeField]
     private string ingredientName;
-
-    public Ingredient()
-    {
-        id = counter;
-        counter++;
-    }
 }
 
 [System.Serializable]
