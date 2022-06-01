@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637895732758948498
-    m_Hash: 3797008411
+      ticks: 637895974675031778
+    m_Hash: 976137208
   m_LockFileStatus:
     m_FilePath: C:/Users/Exmachine/source/repos/KithenNotes/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637895732758958513
-    m_Hash: 3062220839
+      ticks: 637895974675031778
+    m_Hash: 688831189
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
@@ -1868,6 +1868,56 @@ m_PackageAssets:
       repository:
         type: 
         url: 
+        revision: 
+        path: 
+    - packageId: com.unity.uiextensions@https://github.com/Unity-UI-Extensions/com.unity.uiextensions.git
+      testable: 0
+      isDirectDependency: 1
+      version: 2.2.7
+      source: 5
+      resolvedPath: C:\Users\Exmachine\source\repos\KithenNotes\Library\PackageCache\com.unity.uiextensions@9fadad0f72
+      assetPath: Packages/com.unity.uiextensions
+      name: com.unity.uiextensions
+      displayName: Unity UI Extensions
+      author:
+        name: Simon darkside Jackson
+        email: '@SimonDarksideJ'
+        url: 
+      category: 
+      type: 
+      description: An extension project for the Unity3D UI system, all crafted and
+        contributed by the awesome Unity community
+      status: 4
+      errors: []
+      versions:
+        all: []
+        compatible: []
+        verified: 
+      dependencies: []
+      resolvedDependencies: []
+      keywords:
+      - Unity3D
+      - Unity
+      - Unity UI
+      - UI Extensions
+      registry:
+        id: 
+        name: 
+        url: 
+        scopes: []
+        isDefault: 0
+        capabilities: 0
+      hasRegistry: 0
+      hideInEditor: 1
+      entitlements:
+        isAllowed: 1
+      isAssetStorePackage: 0
+      datePublishedTicks: 0
+      documentationUrl: 
+      hasRepository: 1
+      repository:
+        type: git
+        url: git+https://bitbucket.org/UnityUIExtensions/unity-ui-extensions.git
         revision: 
         path: 
     - packageId: com.unity.modules.ai@1.0.0

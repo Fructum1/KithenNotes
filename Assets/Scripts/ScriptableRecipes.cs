@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using System.IO;
 
-enum FoodTypes
+public enum FoodTypes
 {
     soup,
     salad,
@@ -20,8 +20,7 @@ enum FoodTypes
     snacks,
     seafood,
 }
-
-enum NationalTypes
+public enum NationalTypes
 {
     Russian,
     Italian,
@@ -74,23 +73,15 @@ public class RecipeSet
 public class Recipe
 {
     public int id;
-    [SerializeField]
-    private string recipeName;
-    [SerializeField]
-    private NationalTypes national;
-    [SerializeField]
-    private FoodTypes type;
-    [SerializeField]
-    private string description;
-    [SerializeField]
+    public string recipeName;
+    public NationalTypes national;
+    public FoodTypes type;
+    public string description;
     [Multiline]
-    private string guide;
-    [SerializeField]
-    private string imagePath;
-    [SerializeField]
-    private int cookingTime;
-    [SerializeField]
-    private List<IngredientData> ingredients;
+    public string guide;
+    public string imagePath;
+    public int cookingTime;
+    public List<IngredientData> ingredients;
 }
 
 [System.Serializable]
