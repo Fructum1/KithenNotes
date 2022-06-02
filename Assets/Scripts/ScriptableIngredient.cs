@@ -33,8 +33,7 @@ public class ScriptableIngredient : ScriptableObject
 public class Ingredient
 {
     public int id;
-    [SerializeField]
-    private string ingredientName;
+    public string ingredientName;
 }
 
 [System.Serializable]

@@ -6,31 +6,33 @@ using System.IO;
 
 public enum FoodTypes
 {
-    soup,
-    salad,
-    baking,
-    pita,
-    hotMeal,
-    coldMeal,
-    dessert,
-    dairyDishes,
-    sauses,
-    porridge,
-    drinks,
-    snacks,
-    seafood,
+    любая,
+    супы,
+    салаты,
+    выпечка,
+    лаваш,
+    горячие,
+    холодные,
+    дессерты,
+    молочные,
+    соусы,
+    каши,
+    напитки,
+    закуски,
+    морские,
 }
 public enum NationalTypes
 {
-    Russian,
-    Italian,
-    Japanese,
-    European,
-    Asian,
-    PanAsian,
-    Georgian,
-    Mexican,
-    Exotic,
+    любая,
+    Русская,
+    Итальянская,
+    Японская,
+    Европейская,
+    Азиатская,
+    Паназиатская,
+    Кавказская,
+    Мексиканская,
+    Экзотическая,
 }
 
 [CreateAssetMenu(fileName = "New Recipe", menuName = "Recipe Data", order = 51)]
@@ -87,8 +89,6 @@ public class Recipe
 [System.Serializable]
 public class IngredientData
 {
-    [SerializeField]
-    private Ingredient ingredient;
-    [SerializeField]
-    private double weight;
+    public Ingredient ingredient;
+    public double weight;
 }

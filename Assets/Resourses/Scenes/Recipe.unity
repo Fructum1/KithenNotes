@@ -132,6 +132,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 28824091}
+  - component: {fileID: 28824092}
+  - component: {fileID: 28824093}
   m_Layer: 5
   m_Name: Ingredients
   m_TagString: Untagged
@@ -155,9 +157,49 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00003419302}
-  m_SizeDelta: {x: 0, y: 300}
+  m_AnchoredPosition: {x: 0, y: 0.0006191589}
+  m_SizeDelta: {x: -901.23, y: 0}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &28824092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28824090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 1
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
+--- !u!114 &28824093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28824090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &146432024
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +291,7 @@ GameObject:
   - component: {fileID: 258108433}
   - component: {fileID: 258108432}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: RecipeDescription
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -330,7 +372,7 @@ GameObject:
   - component: {fileID: 300905178}
   - component: {fileID: 300905177}
   m_Layer: 5
-  m_Name: Button2
+  m_Name: AddFavorite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -636,7 +678,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000051464303}
+  m_AnchoredPosition: {x: 0, y: -0.000044292163}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &729120379
@@ -944,7 +986,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1353445400}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999978
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1425,8 +1467,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 596253522}
   m_HandleRect: {fileID: 596253521}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.99999905
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1556,7 +1598,7 @@ GameObject:
   - component: {fileID: 1374399325}
   - component: {fileID: 1374399324}
   m_Layer: 5
-  m_Name: Text
+  m_Name: CookingTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1785,7 +1827,7 @@ GameObject:
   - component: {fileID: 1550625298}
   - component: {fileID: 1550625297}
   m_Layer: 5
-  m_Name: Text
+  m_Name: RecipeName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2191,6 +2233,7 @@ GameObject:
   - component: {fileID: 1960775101}
   - component: {fileID: 1960775100}
   - component: {fileID: 1960775099}
+  - component: {fileID: 1960775102}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2263,6 +2306,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1960775102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960775098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bf5a3920da63a240a19ee856ed3fbcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 8440012077704197762, guid: e1eca3a5170e11740a3325cc784901be, type: 3}
 --- !u!1 &2119580930
 GameObject:
   m_ObjectHideFlags: 0

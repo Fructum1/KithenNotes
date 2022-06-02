@@ -9,8 +9,8 @@ public class Search : MonoBehaviour
     Text t_searchedName;
     public static string nameSearch;
 
-    void Start()
-    {
+    void Start() 
+    { 
         t_searchedName = GameObject.Find("SearchedName").GetComponent<Text>();
         m_buttonSearch = GameObject.Find("SubmitSearch").GetComponent<Button>();
         m_buttonSearch.onClick.AddListener(() => nameSearch = t_searchedName.text);
