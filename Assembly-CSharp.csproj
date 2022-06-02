@@ -59,12 +59,12 @@
     <Compile Include="Assets\Scripts\FoundedRecipes.cs" />
     <Compile Include="Assets\Scripts\Search.cs" />
     <Compile Include="Assets\Scripts\SceneChanger.cs" />
+    <Compile Include="Assets\Scripts\Favorites.cs" />
     <Compile Include="Assets\Scripts\AdvencedSearch.cs" />
     <Compile Include="Assets\Scripts\ScriptableRecipes.cs" />
     <Compile Include="Assets\Scripts\RecipeLoad.cs" />
     <Compile Include="Assets\Scripts\ScriptableIngredient.cs" />
     <Compile Include="Assets\Scripts\LoadData.cs" />
-    <Compile Include="Assets\Scripts\Favorites.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

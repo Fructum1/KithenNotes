@@ -53,7 +53,6 @@ public class ScriptableRecipes : ScriptableObject
         if (!File.Exists(FilePath))
         {
             File.Create(FilePath);
-            Debug.Log("Создан файл " + FilePath);
         }
 
         File.WriteAllText(FilePath, dataString);
@@ -84,6 +83,13 @@ public class Recipe
     public string imagePath;
     public int cookingTime;
     public List<IngredientData> ingredients;
+
+    public override bool Equals(object obj)
+    {
+        if (obj is Recipe recipe) return id == recipe.id;
+        return false;
+    }
+    public override int GetHashCode() => id.GetHashCode();
 }
 
 [System.Serializable]

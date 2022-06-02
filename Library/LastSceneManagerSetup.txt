@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Resourses/Scenes/Favorites.unity
+- path: Assets/Resources/Scenes/Favorites.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

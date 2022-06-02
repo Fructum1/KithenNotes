@@ -11,9 +11,15 @@ public class LoadData : MonoBehaviour
     {
         Recipes.Clear();
         Ingredients.Clear();
+        Favorites.favoriteResipes.Clear();
         string recipesJson = "";
         string ingredientsJson = "";
+        string favoritesJson = "";
 
+        if (System.IO.File.Exists(Application.persistentDataPath + "/favoritesRecipes.json"))
+        {
+            favoritesJson = System.IO.File.ReadAllText(Application.persistentDataPath + "/favoritesRecipes.json");
+        }
         if (System.IO.File.Exists(Application.persistentDataPath + "/ingredients.json"))
         {
             ingredientsJson = System.IO.File.ReadAllText(Application.persistentDataPath + "/ingredients.json");
@@ -34,6 +40,15 @@ public class LoadData : MonoBehaviour
         {
             Recipes.Add(recipess.recipes[i]);
         }
-        
+
+        if (!favoritesJson.Equals(""))
+        {
+            var favoritesRecipes = JsonUtility.FromJson<RecipeSet>(favoritesJson);
+            for (int i = 0; i < favoritesRecipes.recipes.Count; i++)
+            {
+                Favorites.favoriteResipes.Add(favoritesRecipes.recipes[i]);
+            }
+        }
+
     }
 }

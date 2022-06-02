@@ -22,7 +22,6 @@ public class ScriptableIngredient : ScriptableObject
         if (!File.Exists(FilePath))
         {
             File.Create(FilePath);
-            Debug.Log("Создан файл " + FilePath);
         }
 
         File.WriteAllText(FilePath, dataString);
