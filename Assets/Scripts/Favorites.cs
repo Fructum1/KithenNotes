@@ -12,7 +12,10 @@ public class Favorites : MonoBehaviour
     [SerializeField]
     private GameObject recipe;
     private RectTransform content;
-
+    private Text TextSearch;
+    private Sprite OnFavorite;
+    private Sprite OffFavorite;
+    private Image FavoriteButtonImage;
 
     private string fileName = "favoritesRecipes";
     private string FilePath => Path.Combine(Application.persistentDataPath, fileName + ".json");
@@ -25,6 +28,7 @@ public class Favorites : MonoBehaviour
             if (favoriteResipes!.All(r => r.id != FoundedRecipes.selectedRecipe.id))
             {
                 favoriteResipes.Add(FoundedRecipes.selectedRecipe);
+                FavoriteButtonImage.sprite = OnFavorite;
 
                 string dataToFile = JsonUtility.ToJson(new RecipeSet(favoriteResipes), true);
 
@@ -38,6 +42,7 @@ public class Favorites : MonoBehaviour
             else if (favoriteResipes.Any(r => r.id == FoundedRecipes.selectedRecipe.id))
             {
                 favoriteResipes.Remove(favoriteResipes.FirstOrDefault(r => r.id == FoundedRecipes.selectedRecipe.id));
+                FavoriteButtonImage.sprite = OffFavorite;
 
                 string dataToFile = JsonUtility.ToJson(new RecipeSet(favoriteResipes), true);
 
@@ -51,14 +56,17 @@ public class Favorites : MonoBehaviour
         } 
     }
 
-    private void Start()
+    public void Search()
     {
-        if (SceneManager.GetActiveScene().name.Equals("Favorites"))
+        if(TextSearch.text != null || !TextSearch.text.Equals(""))
         {
-            FoundedRecipes.selectedRecipe = null;
-            content = GameObject.Find("Content").GetComponent<RectTransform>();
+            foreach (Transform child in content.transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
 
-            var data = Favorites.favoriteResipes.Intersect(LoadData.Recipes).ToList();
+            var data = Favorites.favoriteResipes.Intersect(LoadData.Recipes);
+            data = data.Where(r => r.recipeName.StartsWith(TextSearch.text));
 
             foreach (var item in data)
             {
@@ -69,6 +77,48 @@ public class Favorites : MonoBehaviour
                 btn.GetComponent<Button>().onClick.AddListener(() => FoundedRecipes.selectedRecipe = item);
                 btn.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene("Recipe"));
             }
+        }
+        else
+        {
+            var data = Favorites.favoriteResipes.Intersect(LoadData.Recipes);
+
+            foreach (var item in data)
+            {
+                GameObject btn = Instantiate(recipe, content);
+
+                btn.GetComponentInChildren<Text>().text = item.recipeName;
+
+                btn.GetComponent<Button>().onClick.AddListener(() => FoundedRecipes.selectedRecipe = item);
+                btn.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene("Recipe"));
+            }
+        }
+    }
+
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().name.Equals("Favorites"))
+        {
+            TextSearch = GameObject.Find("TextSearch").GetComponent<Text>();
+            FoundedRecipes.selectedRecipe = null;
+            content = GameObject.Find("Content").GetComponent<RectTransform>();
+
+            var data = Favorites.favoriteResipes.Intersect(LoadData.Recipes);
+
+            foreach (var item in data)
+            {
+                GameObject btn = Instantiate(recipe, content);
+
+                btn.GetComponentInChildren<Text>().text = item.recipeName;
+
+                btn.GetComponent<Button>().onClick.AddListener(() => FoundedRecipes.selectedRecipe = item);
+                btn.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene("Recipe"));
+            }
+        }
+        else
+        {
+            OnFavorite = Resources.Load<Sprite>("Images/heartRED(1)");
+            OffFavorite = Resources.Load<Sprite>("Images/heartBLACK(1)");
+            FavoriteButtonImage = GameObject.Find("AddFavorite").GetComponent<Image>();
         }
     }
 }
