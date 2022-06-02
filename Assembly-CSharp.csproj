@@ -53,18 +53,18 @@
     <UnityVersion>2020.3.28f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\FoundedRecipes.cs" />
     <Compile Include="Assets\Scripts\Search.cs" />
     <Compile Include="Assets\Scripts\SceneChanger.cs" />
+    <Compile Include="Assets\Scripts\Favorites.cs" />
     <Compile Include="Assets\Scripts\AdvencedSearch.cs" />
     <Compile Include="Assets\Scripts\ScriptableRecipes.cs" />
     <Compile Include="Assets\Scripts\RecipeLoad.cs" />
     <Compile Include="Assets\Scripts\ScriptableIngredient.cs" />
     <Compile Include="Assets\Scripts\LoadData.cs" />
-    <Compile Include="Assets\Scripts\Favorites.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
