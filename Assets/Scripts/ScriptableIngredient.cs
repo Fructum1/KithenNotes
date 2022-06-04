@@ -8,8 +8,8 @@ using UnityEngine;
 [System.Serializable]
 public class ScriptableIngredient : ScriptableObject
 {
-    private string fileName = "ingredients";
-    private string FilePath => Path.Combine(Application.persistentDataPath, fileName + ".json");
+    private string _fileName = "ingredients";
+    private string FilePath => Path.Combine("Assets/Resources/Data", _fileName + ".json");
     public List<Ingredient> Ingredients => ingredients;
     [SerializeField]
     private List<Ingredient> ingredients;
@@ -22,9 +22,12 @@ public class ScriptableIngredient : ScriptableObject
         if (!File.Exists(FilePath))
         {
             File.Create(FilePath);
+            File.WriteAllText(FilePath, dataString);
         }
-
-        File.WriteAllText(FilePath, dataString);
+        else
+        {
+            File.WriteAllText(FilePath, dataString);
+        }
     }
 }
 

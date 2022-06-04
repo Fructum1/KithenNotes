@@ -4,43 +4,12 @@ using UnityEditor;
 using UnityEngine;
 using System.IO;
 
-public enum FoodTypes
-{
-    любая,
-    супы,
-    салаты,
-    выпечка,
-    лаваш,
-    горячие,
-    холодные,
-    дессерты,
-    молочные,
-    соусы,
-    каши,
-    напитки,
-    закуски,
-    морские,
-}
-public enum NationalTypes
-{
-    любая,
-    Русская,
-    Итальянская,
-    Японская,
-    Европейская,
-    Азиатская,
-    Паназиатская,
-    Кавказская,
-    Мексиканская,
-    Экзотическая,
-}
-
 [CreateAssetMenu(fileName = "New Recipe", menuName = "Recipe Data", order = 51)]
 [System.Serializable]
 public class ScriptableRecipes : ScriptableObject
 {
-    private string fileName = "recipes";
-    private string FilePath => Path.Combine(Application.persistentDataPath, fileName + ".json");
+    private string _fileName = "recipes";
+    private string FilePath => Path.Combine("Assets/Resources/Data", _fileName + ".json");
     public List<Recipe> Recipes => recipes;
     [SerializeField]
     private List<Recipe> recipes;
@@ -53,9 +22,13 @@ public class ScriptableRecipes : ScriptableObject
         if (!File.Exists(FilePath))
         {
             File.Create(FilePath);
+            File.WriteAllText(FilePath, dataString);
         }
-
-        File.WriteAllText(FilePath, dataString);
+        else
+        {
+            File.WriteAllText(FilePath, dataString);
+        }
+        
     }
 
 }

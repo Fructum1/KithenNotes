@@ -10,12 +10,12 @@ using UnityEngine.SceneManagement;
 public class Favorites : MonoBehaviour
 {
     [SerializeField]
-    private GameObject recipe;
-    private RectTransform content;
-    private Text TextSearch;
-    private Sprite OnFavorite;
-    private Sprite OffFavorite;
-    private Image FavoriteButtonImage;
+    private GameObject _recipe;
+    private RectTransform _content;
+    private Text _textSearch;
+    private Sprite _onFavorite;
+    private Sprite _offFavorite;
+    private Image _favoriteButtonImage;
 
     private string fileName = "favoritesRecipes";
     private string FilePath => Path.Combine(Application.persistentDataPath, fileName + ".json");
@@ -23,12 +23,12 @@ public class Favorites : MonoBehaviour
 
     public void AddToFavorites()
     {
-        if(FoundedRecipes.selectedRecipe.id != 0) 
+        if(LoadData.SelectedRecipe.id != 0) 
         {
-            if (favoriteResipes!.All(r => r.id != FoundedRecipes.selectedRecipe.id))
+            if (favoriteResipes!.All(r => r.id != LoadData.SelectedRecipe.id))
             {
-                favoriteResipes.Add(FoundedRecipes.selectedRecipe);
-                FavoriteButtonImage.sprite = OnFavorite;
+                favoriteResipes.Add(LoadData.SelectedRecipe);
+                _favoriteButtonImage.sprite = _onFavorite;
 
                 string dataToFile = JsonUtility.ToJson(new RecipeSet(favoriteResipes), true);
 
@@ -39,10 +39,10 @@ public class Favorites : MonoBehaviour
 
                 File.WriteAllText(FilePath, dataToFile);
             }
-            else if (favoriteResipes.Any(r => r.id == FoundedRecipes.selectedRecipe.id))
+            else if (favoriteResipes.Any(r => r.id == LoadData.SelectedRecipe.id))
             {
-                favoriteResipes.Remove(favoriteResipes.FirstOrDefault(r => r.id == FoundedRecipes.selectedRecipe.id));
-                FavoriteButtonImage.sprite = OffFavorite;
+                favoriteResipes.Remove(favoriteResipes.FirstOrDefault(r => r.id == LoadData.SelectedRecipe.id));
+                _favoriteButtonImage.sprite = _offFavorite;
 
                 string dataToFile = JsonUtility.ToJson(new RecipeSet(favoriteResipes), true);
 
@@ -58,23 +58,23 @@ public class Favorites : MonoBehaviour
 
     public void Search()
     {
-        if(TextSearch.text != null || !TextSearch.text.Equals(""))
+        if(_textSearch.text != null || !_textSearch.text.Equals(""))
         {
-            foreach (Transform child in content.transform)
+            foreach (Transform child in _content.transform)
             {
                 GameObject.Destroy(child.gameObject);
             }
 
             var data = Favorites.favoriteResipes.Intersect(LoadData.Recipes);
-            data = data.Where(r => r.recipeName.StartsWith(TextSearch.text));
+            data = data.Where(r => r.recipeName.StartsWith(_textSearch.text));
 
             foreach (var item in data)
             {
-                GameObject btn = Instantiate(recipe, content);
+                GameObject btn = Instantiate(_recipe, _content);
 
                 btn.GetComponentInChildren<Text>().text = item.recipeName;
 
-                btn.GetComponent<Button>().onClick.AddListener(() => FoundedRecipes.selectedRecipe = item);
+                btn.GetComponent<Button>().onClick.AddListener(() => LoadData.SelectedRecipe = item);
                 btn.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene("Recipe"));
             }
         }
@@ -84,11 +84,11 @@ public class Favorites : MonoBehaviour
 
             foreach (var item in data)
             {
-                GameObject btn = Instantiate(recipe, content);
+                GameObject btn = Instantiate(_recipe, _content);
 
                 btn.GetComponentInChildren<Text>().text = item.recipeName;
 
-                btn.GetComponent<Button>().onClick.AddListener(() => FoundedRecipes.selectedRecipe = item);
+                btn.GetComponent<Button>().onClick.AddListener(() => LoadData.SelectedRecipe = item);
                 btn.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene("Recipe"));
             }
         }
@@ -98,27 +98,32 @@ public class Favorites : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name.Equals("Favorites"))
         {
-            TextSearch = GameObject.Find("TextSearch").GetComponent<Text>();
-            FoundedRecipes.selectedRecipe = null;
-            content = GameObject.Find("Content").GetComponent<RectTransform>();
+            _textSearch = GameObject.Find("TextSearch").GetComponent<Text>();
+            LoadData.SelectedRecipe = null;
+            _content = GameObject.Find("Content").GetComponent<RectTransform>();
 
             var data = Favorites.favoriteResipes.Intersect(LoadData.Recipes);
 
             foreach (var item in data)
             {
-                GameObject btn = Instantiate(recipe, content);
+                GameObject btn = Instantiate(_recipe, _content);
 
                 btn.GetComponentInChildren<Text>().text = item.recipeName;
 
-                btn.GetComponent<Button>().onClick.AddListener(() => FoundedRecipes.selectedRecipe = item);
+                btn.GetComponent<Button>().onClick.AddListener(() => LoadData.SelectedRecipe = item);
                 btn.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene("Recipe"));
             }
         }
         else
         {
-            OnFavorite = Resources.Load<Sprite>("Images/heartRED(1)");
-            OffFavorite = Resources.Load<Sprite>("Images/heartBLACK(1)");
-            FavoriteButtonImage = GameObject.Find("AddFavorite").GetComponent<Image>();
+            _onFavorite = Resources.Load<Sprite>("Images/heartRED(1)");
+            _offFavorite = Resources.Load<Sprite>("Images/heartBLACK(1)");
+            _favoriteButtonImage = GameObject.Find("AddFavorite").GetComponent<Image>();
+        }
+
+        if (SceneManager.GetActiveScene().name.Equals("Favorites"))
+        {
+            LoadData.PreviousScene = "Favorites";
         }
     }
 }

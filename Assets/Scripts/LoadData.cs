@@ -1,9 +1,49 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public enum FoodTypes
+{
+    любая,
+    супы,
+    салаты,
+    выпечка,
+    лаваш,
+    горячие,
+    холодные,
+    дессерты,
+    молочные,
+    соусы,
+    каши,
+    напитки,
+    закуски,
+    морские,
+}
+public enum NationalTypes
+{
+    любая,
+    Русская,
+    Итальянская,
+    Японская,
+    Европейская,
+    Азиатская,
+    Паназиатская,
+    Кавказская,
+    Мексиканская,
+    Экзотическая,
+}
 
 public class LoadData : MonoBehaviour
 {
+    public static string SelectedRecipeType;
+    public static string SelectedRecipeNational;
+    public static string PreviousScene;
+    public static Recipe SelectedRecipe = null;
+    public static List<string> SelectedDesiredIngredients = new List<string>();
+    public static List<string> SelectedUndesiredIngredients = new List<string>();
     public static List<Recipe> Recipes = new List<Recipe>();
     public static List<string> Ingredients = new List<string>();
 
@@ -20,14 +60,10 @@ public class LoadData : MonoBehaviour
         {
             favoritesJson = System.IO.File.ReadAllText(Application.persistentDataPath + "/favoritesRecipes.json");
         }
-        if (System.IO.File.Exists(Application.persistentDataPath + "/ingredients.json"))
-        {
-            ingredientsJson = System.IO.File.ReadAllText(Application.persistentDataPath + "/ingredients.json");
-        }
-        if (System.IO.File.Exists(Application.persistentDataPath + "/recipes.json"))
-        {
-            recipesJson = System.IO.File.ReadAllText(Application.persistentDataPath + "/recipes.json");
-        }
+
+        ingredientsJson = Resources.Load<TextAsset>("Data/ingredients").text;
+        recipesJson = Resources.Load<TextAsset>("Data/recipes").text;
+
 
         var ingredientss = JsonUtility.FromJson<IngredientSet>(ingredientsJson);
         for (int i = 0; i < ingredientss.ingredients.Count; i++)
@@ -49,6 +85,8 @@ public class LoadData : MonoBehaviour
                 Favorites.favoriteResipes.Add(favoritesRecipes.recipes[i]);
             }
         }
+
+        SceneManager.LoadScene("MainScreen");
 
     }
 }

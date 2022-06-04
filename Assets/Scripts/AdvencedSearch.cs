@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,130 +10,242 @@ using UnityEngine.UI.Extensions;
 
 public class AdvencedSearch : MonoBehaviour
 {
-    AutoCompleteComboBox DesiredIngredients;
-    AutoCompleteComboBox UndesiredIngredients;
-    Button ArrowDownDesired;
-    Button ArrowDownUndesired;
-    Text desiredIngredientText;
-    Text undesiredIngredientText;
-    Text TextSearchDesired;
-    Text TextSearchUndesired;
-    Dropdown DropdownRecipeType;
-    Dropdown DropddownRecipeNational;
-    public static string RecipeType;
-    public static string RecipeNational;
-    public static List<string> selectedDesiredIngredients = new List<string>();
-    public static List<string> selectedUndesiredIngredients = new List<string> ();
-    List<string> m_DropdownRecipeTypeOptions => Enum.GetValues(typeof(FoodTypes)).Cast<FoodTypes>().Select(v => v.ToString()).ToList();
-    List<string> m_DropdownRecipeNational => Enum.GetValues(typeof(NationalTypes)).Cast<NationalTypes>().Select(v => v.ToString()).ToList();
-    List<string> m_Ingredients = LoadData.Ingredients;
+    [SerializeField]
+    private GameObject _ingredient;
+    RectTransform _ingredientsDesired;
+    RectTransform _ingredientsUnDesired;
+    RectTransform _scrollViewDesired;
+    RectTransform _scrollViewUnDesired;
+    Dropdown _dropdownRecipeType;
+    Dropdown _dropddownRecipeNational;
+    Text _desiredList;
+    Text _unDesiredList;
+    Text _textSearchUnDesired;
+    Text _textSearchDesired;
+    List<Button> _listOfIngredientsDesired;
+    List<Button> _listOfIngredientsUndesired;
+    List<string> _dropdownRecipeTypeOptions => Enum.GetValues(typeof(FoodTypes)).Cast<FoodTypes>()
+                                                                                 .Select(v => v.ToString()).ToList();
+    List<string> _dropdownRecipeNational => Enum.GetValues(typeof(NationalTypes)).Cast<NationalTypes>()
+                                                                                  .Select(v => v.ToString()).ToList();
+    bool _dropdownUnDesiredToggled = false;
+    bool _dropdownDesiredToggled = false;
 
-    void Start()
+    private void Start()
     {
-        FindAllComponents();
-        ClearAllDropdownOptions();
+        LoadData.SelectedDesiredIngredients.Clear();
+        LoadData.SelectedUndesiredIngredients.Clear();
 
-        DesiredIngredients.SetAvailableOptions(m_Ingredients);
-        UndesiredIngredients.SetAvailableOptions(m_Ingredients);
-        DropdownRecipeType.AddOptions(m_DropdownRecipeTypeOptions);
+        _scrollViewDesired = GameObject.Find("ScrollViewDesired").GetComponent<RectTransform>();
+        _scrollViewUnDesired = GameObject.Find("ScrollViewUnDesired").GetComponent<RectTransform>();
+        _ingredientsDesired = GameObject.Find("IngredientsDesired").GetComponent<RectTransform>();
+        _ingredientsUnDesired = GameObject.Find("IngredientsUnDesired").GetComponent<RectTransform>();
+        _dropdownRecipeType = GameObject.Find("DropdownType").GetComponent<Dropdown>();
+        _dropddownRecipeNational = GameObject.Find("DropdownNational").GetComponent<Dropdown>();
+        _desiredList = GameObject.Find("DesiredList").GetComponent<Text>();
+        _textSearchDesired = GameObject.Find("TextSearchDesired").GetComponent<Text>();
+        _unDesiredList = GameObject.Find("UnDesiredList").GetComponent<Text>();
+        _textSearchUnDesired = GameObject.Find("TextSearchUnDesired").GetComponent<Text>();
 
-        DropddownRecipeNational.ClearOptions();
-        DropddownRecipeNational.AddOptions(m_DropdownRecipeNational);
+        foreach (var item in LoadData.Ingredients)
+        {
+            GameObject desired = Instantiate(_ingredient, _ingredientsDesired);
+
+            desired.GetComponentInChildren<Text>().text = item;
+            desired.GetComponent<Button>().onClick.AddListener(() => OnIngredientClick(item, true));
+
+            GameObject unDesired = Instantiate(_ingredient, _ingredientsUnDesired);
+
+            unDesired.GetComponentInChildren<Text>().text = item;
+            unDesired.GetComponent<Button>().onClick.AddListener(() => OnIngredientClick(item, false));
+        }
+
+        _listOfIngredientsDesired = _ingredientsDesired.GetComponentsInChildren<Button>().ToList<Button>();
+        _listOfIngredientsUndesired = _ingredientsUnDesired.GetComponentsInChildren<Button>().ToList<Button>();
+        _dropdownRecipeType.ClearOptions();
+        _dropdownRecipeType.AddOptions(_dropdownRecipeTypeOptions);
+        _dropddownRecipeNational.ClearOptions();
+        _dropddownRecipeNational.AddOptions(_dropdownRecipeNational);
+
+        _scrollViewUnDesired.gameObject.SetActive(false);
+        _scrollViewDesired.gameObject.SetActive(false);
+
+        LoadData.PreviousScene = SceneManager.GetActiveScene().name;
+    }
+
+    public void HideOnInput(bool desired)
+    {
+        if (desired)
+        {
+            _desiredList.gameObject.SetActive(false);
+            _textSearchDesired.gameObject.SetActive(true);
+        }
+        else
+        {
+            _unDesiredList.gameObject.SetActive(false);
+            _textSearchUnDesired.gameObject.SetActive(true);
+        }
+    }
+
+    public void ShowOnEndInput(bool desired)
+    {
+        if (desired)
+        {
+            _desiredList.gameObject.SetActive(true);
+            _textSearchDesired.gameObject.SetActive(false);
+        }
+        else
+        {
+            _unDesiredList.gameObject.SetActive(true);
+            _textSearchUnDesired.gameObject.SetActive(false);
+        }
+    }
+
+    public void ToggleDropdownMenuDesired()
+    {   
+        if (_dropdownDesiredToggled)
+        {
+            _scrollViewDesired.gameObject.SetActive(false);
+            _dropdownDesiredToggled = !_dropdownDesiredToggled;
+        }
+        else
+        {
+            _scrollViewDesired.gameObject.SetActive(true);
+            _dropdownDesiredToggled = !_dropdownDesiredToggled;
+        }
+    }
+    public void ToggleDropdownMenuUnDesired()
+    {    
+        if (_dropdownUnDesiredToggled)
+        {
+            _scrollViewUnDesired.gameObject.SetActive(false);
+            _dropdownUnDesiredToggled = !_dropdownUnDesiredToggled;
+        }
+        else
+        {
+            _scrollViewUnDesired.gameObject.SetActive(true);
+            _dropdownUnDesiredToggled = !_dropdownUnDesiredToggled;
+        }
+    }
+    public void LiveSearchUnDesired(string searchedItem)
+    {
+        _scrollViewUnDesired.gameObject.SetActive(true);
+        _scrollViewDesired.gameObject.SetActive(false);
+        _dropdownUnDesiredToggled = true;
+        if (!searchedItem.Equals(""))
+        {
+            var data = _listOfIngredientsUndesired.Where(i => i.GetComponentInChildren<Text>().text.Split(' ')
+                                                  .All(i => !i.StartsWith(searchedItem, true, CultureInfo.CurrentCulture)));
+            foreach (var item in data)
+            {
+                item.gameObject.SetActive(false);
+            }
+
+            if (data.Count() == _listOfIngredientsUndesired.Count())
+            {
+                ShowAllItemsInDropdownMenuUnDesired();
+            }
+        }
+        else
+        {
+            ShowAllItemsInDropdownMenuUnDesired();
+        }
+
+    }
+
+    public void LiveSearchDesired(string searchedItem)
+    {
+        _scrollViewDesired.gameObject.SetActive(true);
+        _scrollViewUnDesired.gameObject.SetActive(false);
+        _dropdownDesiredToggled = true;
+        if (!searchedItem.Equals(""))
+        {
+            var data = _listOfIngredientsDesired.Where(i => i.GetComponentInChildren<Text>().text.Split(' ')
+                                                .All(i => !i.StartsWith(searchedItem, true, CultureInfo.CurrentCulture)));
+            foreach (var item in data)
+            {
+                item.gameObject.SetActive(false);
+            }
+
+            if (data.Count() == _listOfIngredientsDesired.Count())
+            {
+                ShowAllItemsInDropdownMenuDesired();
+            }
+        }
+        else
+        {
+            ShowAllItemsInDropdownMenuDesired();
+        }
     }
 
     public void OnSearchSubmit()
     {
-        RecipeType = DropdownRecipeType.options[DropdownRecipeType.value].text;
-        RecipeNational = DropddownRecipeNational.options[DropddownRecipeNational.value].text;
+        LoadData.SelectedRecipeType = _dropdownRecipeType.options[_dropdownRecipeType.value].text;
+        LoadData.SelectedRecipeNational = _dropddownRecipeNational.options[_dropddownRecipeNational.value].text;
     }
 
-    public void OnSelectDesired(string selectedItem, bool changed)
+    public void ClearListDesired()
     {
-        if (changed)
-        {
-            if (!selectedDesiredIngredients.Contains(selectedItem) && !selectedUndesiredIngredients.Contains(selectedItem))
-            {
-                selectedItem = char.ToUpper(selectedItem[0]) + selectedItem.Substring(1);
+        LoadData.SelectedDesiredIngredients.Clear();
+        _desiredList.text = "";
+    }
+    public void ClearListUnDesired()
+    {
+        LoadData.SelectedUndesiredIngredients.Clear();
+        _unDesiredList.text = "";
+    }
 
-                DesiredIngredients.RemoveItem(selectedItem);
-                UndesiredIngredients.RemoveItem(selectedItem);
-                selectedDesiredIngredients.Add(selectedItem);
-                desiredIngredientText.text += selectedItem + ", ";
-                TextSearchDesired.text = "";
-                ArrowDownDesired.onClick.Invoke();
-                GetComponent<Button>().onClick.Invoke();
-            }
+    void ShowAllItemsInDropdownMenuDesired()
+    {
+        foreach (var item in _listOfIngredientsDesired)
+        {
+            item.gameObject.SetActive(true);
+        }
+    }
+    void ShowAllItemsInDropdownMenuUnDesired()
+    {
+        foreach (var item in _listOfIngredientsUndesired)
+        {
+            item.gameObject.SetActive(true);
         }
     }
 
-    public void OnSelectUndesired(string selectedItem, bool changed)
+    void OnIngredientClick(string ingredientName, bool desired)
     {
-        if (changed)
+        if (desired)
         {
-            if (!selectedUndesiredIngredients.Contains(selectedItem) && !selectedDesiredIngredients.Contains(selectedItem))
+            if (!LoadData.SelectedDesiredIngredients.Contains(ingredientName))
             {
-                selectedItem = char.ToUpper(selectedItem[0]) + selectedItem.Substring(1);
-
-                DesiredIngredients.RemoveItem(selectedItem);
-                UndesiredIngredients.RemoveItem(selectedItem);
-                selectedUndesiredIngredients.Add(selectedItem);
-                undesiredIngredientText.text += selectedItem + ", ";
-                TextSearchUndesired.text = "";
-                ArrowDownUndesired.onClick.Invoke();
-                GetComponent<Button>().onClick.Invoke();
+                LoadData.SelectedDesiredIngredients.Add(ingredientName);               
+                _desiredList.text = String.Join(", ", LoadData.SelectedDesiredIngredients);
+                _textSearchDesired.text = "";
+                ShowAllItemsInDropdownMenuDesired();
+            }
+            else
+            {
+                LoadData.SelectedDesiredIngredients.Remove(ingredientName);
+                _desiredList.text = String.Join(", ", LoadData.SelectedDesiredIngredients);
+                _textSearchDesired.text = "";
+                ShowAllItemsInDropdownMenuDesired();
             }
         }
-    }
-
-    public void HideSelectedUndesired()
-    {
-        TextSearchUndesired.gameObject.SetActive(true);
-        undesiredIngredientText.gameObject.SetActive(false);
-    }
-
-    public void HideSelectedDesired()
-    {
-        TextSearchDesired.gameObject.SetActive(true);
-        desiredIngredientText.gameObject.SetActive(false);
-    }
-
-    public void ShowTextOnEditEndDesired()
-    {
-        desiredIngredientText.gameObject.SetActive(true);
-        TextSearchDesired.text = "";
-        TextSearchDesired.gameObject.SetActive(false);
-    }
-
-    public void ShowTextOnEditEndUndesired()
-    {
-        undesiredIngredientText.gameObject.SetActive(true);
-        TextSearchUndesired.text = "";
-        TextSearchUndesired.gameObject.SetActive(false);
-    }
-
-    private void FindAllComponents()
-    {
-        undesiredIngredientText = GameObject.Find("UndesiredText").GetComponent<Text>();
-        desiredIngredientText = GameObject.Find("DesiredText").GetComponent<Text>();
-        undesiredIngredientText = GameObject.Find("UndesiredText").GetComponent<Text>();
-        TextSearchDesired = GameObject.Find("TextSearchDesired").GetComponent<Text>();
-        TextSearchUndesired = GameObject.Find("TextSearchUndesired").GetComponent<Text>();
-        ArrowDownDesired = GameObject.Find("ArrowBtnDesired").GetComponent<Button>();
-        ArrowDownUndesired = GameObject.Find("ArrowBtUndesired").GetComponent<Button>();
-        DesiredIngredients = GameObject.Find("DesiredIngredients").GetComponent<AutoCompleteComboBox>();
-        UndesiredIngredients = GameObject.Find("UndesiredIngredients").GetComponent<AutoCompleteComboBox>();
-        DropdownRecipeType = GameObject.Find("DropdownType").GetComponent<Dropdown>();
-        DropddownRecipeNational = GameObject.Find("DropdownNational").GetComponent<Dropdown>();
-    }
-
-    private void ClearAllDropdownOptions()
-    {
-        DesiredIngredients.AvailableOptions.Clear();
-        selectedDesiredIngredients.Clear();
-        selectedUndesiredIngredients.Clear();
-        UndesiredIngredients.AvailableOptions.Clear();
-        DropdownRecipeType.ClearOptions();
+        else
+        {
+            if (!LoadData.SelectedUndesiredIngredients.Contains(ingredientName))
+            {
+                LoadData.SelectedUndesiredIngredients.Add(ingredientName);
+                _unDesiredList.text = String.Join(", ", LoadData.SelectedUndesiredIngredients);
+                _textSearchUnDesired.text = "";
+                ShowAllItemsInDropdownMenuUnDesired();
+            }
+            else
+            {
+                LoadData.SelectedUndesiredIngredients.Remove(ingredientName);
+                _unDesiredList.text = String.Join(", ", LoadData.SelectedUndesiredIngredients);
+                _textSearchUnDesired.text = "";
+                ShowAllItemsInDropdownMenuUnDesired();
+            }
+        }
     }
 }
-
 //TODO: Сделать обобщенные методы для работы с любыми компонентами

@@ -7,42 +7,42 @@ using System.Linq;
 public class RecipeLoad : MonoBehaviour
 {
     [SerializeField]
-    private GameObject text;
-    private Text t_RecipeName;
-    private Text t_RecipeDescription;
-    private Text t_RecipeCookingTime;
-    private Text t_TextGuide;
-    private Image FavoriteButtonImage;
-    private Image RecipeImage;
-    private Sprite FavoritedImage;
-    private RectTransform IngredientsContent;
+    private GameObject _text;
+    private Text _recipeName;
+    private Text _recipeDescription;
+    private Text _recipeCookingTime;
+    private Text _textGuide;
+    private Image _favoriteButtonImage;
+    private Image _recipeImage;
+    private Sprite _favoritedImage;
+    private RectTransform _ingredientsContent;
 
     void Start()
     {
-        IngredientsContent = GameObject.Find("Ingredients").GetComponent<RectTransform>();
-        t_RecipeCookingTime = GameObject.Find("CookingTime").GetComponent<Text>();
-        t_RecipeDescription = GameObject.Find("RecipeDescription").GetComponent<Text>();
-        t_RecipeName = GameObject.Find("RecipeName").GetComponent<Text>();
-        t_TextGuide = GameObject.Find("TextGuide").GetComponent<Text>();       
-        FavoriteButtonImage = GameObject.Find("AddFavorite").GetComponent<Image>();
-        RecipeImage = GameObject.Find("Image").GetComponent<Image>();
+        _ingredientsContent = GameObject.Find("Ingredients").GetComponent<RectTransform>();
+        _recipeCookingTime = GameObject.Find("CookingTime").GetComponent<Text>();
+        _recipeDescription = GameObject.Find("RecipeDescription").GetComponent<Text>();
+        _recipeName = GameObject.Find("RecipeName").GetComponent<Text>();
+        _textGuide = GameObject.Find("TextGuide").GetComponent<Text>();       
+        _favoriteButtonImage = GameObject.Find("AddFavorite").GetComponent<Image>();
+        _recipeImage = GameObject.Find("Image").GetComponent<Image>();
 
-        t_RecipeName.text = FoundedRecipes.selectedRecipe.recipeName;
-        t_RecipeDescription.text = FoundedRecipes.selectedRecipe.description;
-        t_RecipeCookingTime.text = FoundedRecipes.selectedRecipe.cookingTime.ToString();
-        t_TextGuide.text = FoundedRecipes.selectedRecipe.guide;
-        RecipeImage.sprite = Resources.Load<Sprite>(FoundedRecipes.selectedRecipe.imagePath);
+        _recipeName.text = LoadData.SelectedRecipe.recipeName;
+        _recipeDescription.text = LoadData.SelectedRecipe.description;
+        _recipeCookingTime.text = LoadData.SelectedRecipe.cookingTime.ToString();
+        _textGuide.text = LoadData.SelectedRecipe.guide;
+        _recipeImage.sprite = Resources.Load<Sprite>(LoadData.SelectedRecipe.imagePath);
 
-        if (Favorites.favoriteResipes.Any(r => r.id == FoundedRecipes.selectedRecipe.id))
+        if (Favorites.favoriteResipes.Any(r => r.id == LoadData.SelectedRecipe.id))
         {
-            FavoritedImage = Resources.Load<Sprite>("Images/heartRED(1)");
-            FavoriteButtonImage.sprite = FavoritedImage;
+            _favoritedImage = Resources.Load<Sprite>("Images/heartRED(1)");
+            _favoriteButtonImage.sprite = _favoritedImage;
         }
 
     
-        foreach (var item in FoundedRecipes.selectedRecipe.ingredients)
+        foreach (var item in LoadData.SelectedRecipe.ingredients)
         {
-            GameObject recipe = Instantiate(text, IngredientsContent) as GameObject;
+            GameObject recipe = Instantiate(_text, _ingredientsContent) as GameObject;
             recipe.GetComponent<Text>().text = item.ingredient.ingredientName + " - " + item.weight.ToString() +" Í„.";
         }
     }

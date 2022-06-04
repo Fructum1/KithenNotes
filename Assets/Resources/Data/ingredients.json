@@ -1,0 +1,308 @@
+{
+    "ingredients": [
+        {
+            "id": 1,
+            "ingredientName": "Морковь"
+        },
+        {
+            "id": 2,
+            "ingredientName": "Капуста"
+        },
+        {
+            "id": 3,
+            "ingredientName": "Свёкла"
+        },
+        {
+            "id": 4,
+            "ingredientName": "Говядина"
+        },
+        {
+            "id": 5,
+            "ingredientName": "Фарш"
+        },
+        {
+            "id": 6,
+            "ingredientName": "Репчатый лук"
+        },
+        {
+            "id": 7,
+            "ingredientName": "Зеленый лук"
+        },
+        {
+            "id": 8,
+            "ingredientName": "Огурцы"
+        },
+        {
+            "id": 9,
+            "ingredientName": "Свинина"
+        },
+        {
+            "id": 10,
+            "ingredientName": "Рис"
+        },
+        {
+            "id": 11,
+            "ingredientName": "Гречневая каша"
+        },
+        {
+            "id": 12,
+            "ingredientName": "Перловая каша"
+        },
+        {
+            "id": 13,
+            "ingredientName": "Пшено"
+        },
+        {
+            "id": 14,
+            "ingredientName": "Манная каша"
+        },
+        {
+            "id": 15,
+            "ingredientName": "Укроп"
+        },
+        {
+            "id": 16,
+            "ingredientName": "Петрушка"
+        },
+        {
+            "id": 17,
+            "ingredientName": "Томат"
+        },
+        {
+            "id": 18,
+            "ingredientName": "Вино"
+        },
+        {
+            "id": 19,
+            "ingredientName": "Тесто"
+        },
+        {
+            "id": 20,
+            "ingredientName": "Макароны"
+        },
+        {
+            "id": 21,
+            "ingredientName": "Спагетти"
+        },
+        {
+            "id": 22,
+            "ingredientName": "Чеснок"
+        },
+        {
+            "id": 23,
+            "ingredientName": "Перец черный"
+        },
+        {
+            "id": 24,
+            "ingredientName": "Паприка"
+        },
+        {
+            "id": 25,
+            "ingredientName": "Соль"
+        },
+        {
+            "id": 26,
+            "ingredientName": "Лимон"
+        },
+        {
+            "id": 27,
+            "ingredientName": "Болгарский перец"
+        },
+        {
+            "id": 28,
+            "ingredientName": "Аджика"
+        },
+        {
+            "id": 29,
+            "ingredientName": "Майонез"
+        },
+        {
+            "id": 30,
+            "ingredientName": "Куринное яйцо"
+        },
+        {
+            "id": 31,
+            "ingredientName": "Базилик"
+        },
+        {
+            "id": 32,
+            "ingredientName": "Хлеб"
+        },
+        {
+            "id": 33,
+            "ingredientName": "Томатная паста"
+        },
+        {
+            "id": 34,
+            "ingredientName": "Бобы"
+        },
+        {
+            "id": 35,
+            "ingredientName": "Брокколи"
+        },
+        {
+            "id": 36,
+            "ingredientName": "Ваниль"
+        },
+        {
+            "id": 37,
+            "ingredientName": "Сахар"
+        },
+        {
+            "id": 38,
+            "ingredientName": "Соль"
+        },
+        {
+            "id": 39,
+            "ingredientName": "Голень куриная"
+        },
+        {
+            "id": 40,
+            "ingredientName": "Шампиньоны"
+        },
+        {
+            "id": 41,
+            "ingredientName": "Зира"
+        },
+        {
+            "id": 42,
+            "ingredientName": "Молоко"
+        },
+        {
+            "id": 43,
+            "ingredientName": "Сливки"
+        },
+        {
+            "id": 44,
+            "ingredientName": "Масло подсолнечное"
+        },
+        {
+            "id": 45,
+            "ingredientName": "Масло оливковое"
+        },
+        {
+            "id": 46,
+            "ingredientName": "Сливочное масло"
+        },
+        {
+            "id": 47,
+            "ingredientName": "Мед"
+        },
+        {
+            "id": 48,
+            "ingredientName": "Лимонная кислота"
+        },
+        {
+            "id": 49,
+            "ingredientName": "Уксус"
+        },
+        {
+            "id": 50,
+            "ingredientName": "Белокачанная капуста"
+        },
+        {
+            "id": 51,
+            "ingredientName": "Лавровый лист"
+        },
+        {
+            "id": 52,
+            "ingredientName": "Гвоздика"
+        },
+        {
+            "id": 53,
+            "ingredientName": "Картошка"
+        },
+        {
+            "id": 54,
+            "ingredientName": "Творог"
+        },
+        {
+            "id": 55,
+            "ingredientName": "Пшеничная мука"
+        },
+        {
+            "id": 56,
+            "ingredientName": "Соус болоньезе"
+        },
+        {
+            "id": 57,
+            "ingredientName": "Листья для лазаньи"
+        },
+        {
+            "id": 58,
+            "ingredientName": "Твердый сыр"
+        },
+        {
+            "id": 59,
+            "ingredientName": "Тыква"
+        },
+        {
+            "id": 60,
+            "ingredientName": "Корица"
+        },
+        {
+            "id": 61,
+            "ingredientName": "Консервированная фасоль"
+        },
+        {
+            "id": 62,
+            "ingredientName": "Рукола"
+        },
+        {
+            "id": 63,
+            "ingredientName": "Творожный сыр"
+        },
+        {
+            "id": 64,
+            "ingredientName": "Красный лук"
+        },
+        {
+            "id": 65,
+            "ingredientName": "Соевый соус"
+        },
+        {
+            "id": 66,
+            "ingredientName": "Куриное филе"
+        },
+        {
+            "id": 67,
+            "ingredientName": "Морепродукты"
+        },
+        {
+            "id": 68,
+            "ingredientName": "Сладкий перец"
+        },
+        {
+            "id": 69,
+            "ingredientName": "Томатный сок"
+        },
+        {
+            "id": 70,
+            "ingredientName": "Шафран"
+        },
+        {
+            "id": 71,
+            "ingredientName": "Прованские травы"
+        },
+        {
+            "id": 72,
+            "ingredientName": "Лимонный сок"
+        },
+        {
+            "id": 73,
+            "ingredientName": "Перец чили"
+        },
+        {
+            "id": 74,
+            "ingredientName": "Авокадо"
+        },
+        {
+            "id": 75,
+            "ingredientName": "Кинза"
+        },
+        {
+            "id": 76,
+            "ingredientName": "Лайм"
+        }
+    ]
+}
