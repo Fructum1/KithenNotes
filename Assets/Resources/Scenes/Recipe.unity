@@ -316,7 +316,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -320.6691}
+  m_AnchoredPosition: {x: 0, y: -320.66907}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &258525576
@@ -484,7 +484,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1750200156}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999909
+  m_Size: 0.9999966
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -612,7 +612,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 300905180}
         m_TargetAssemblyTypeName: Favorites, Assembly-CSharp
-        m_MethodName: Search
+        m_MethodName: AddToFavorites
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
