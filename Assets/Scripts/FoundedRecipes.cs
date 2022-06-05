@@ -10,81 +10,103 @@ using System.Globalization;
 public class FoundedRecipes : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _recipe;
+    private GameObject g_recipe;
     [SerializeField]
-    private GameObject _nothingFoundText;
-    private RectTransform _content;
+    private GameObject g_nothingFoundText;
+    private RectTransform rt_content;
+    private Button b_btnBack;
 
-    void Start()
+    public static RectTransform BackDisplayForRecipe;
+
+    private void Awake()
+    {
+        rt_content = GameObject.Find("Recipes").GetComponent<RectTransform>();
+        b_btnBack = GameObject.Find("ButtonBackRecipes").GetComponent<Button>();
+    }
+
+    void OnEnable()
     {
         LoadData.SelectedRecipe = null;
-        _content = GameObject.Find("Content").GetComponent<RectTransform>();
+
+        foreach (Transform child in rt_content.transform)
+        {
+            Destroy(child.gameObject);
+        }
 
         if (Search.nameSearch != null)
         {
-            var data = LoadData.Recipes.Where(r => r.recipeName != null && r.recipeName
+            var recipes = LoadData.Recipes.Where(r => r.recipeName != null && r.recipeName
                                        .Split(' ').Any(r => r.StartsWith(Search.nameSearch, true, CultureInfo.CurrentCulture)));
-            if (data.Count() > 0)
+            if (recipes.Count() > 0)
             {
-                foreach (var item in data)
+                foreach (var item in recipes)
                 {
-                    GameObject btn = Instantiate(_recipe, _content);
+                    GameObject recipe = Instantiate(g_recipe, rt_content);
 
-                    btn.GetComponentInChildren<Text>().text = item.recipeName;
+                    recipe.GetComponentInChildren<Text>().text = item.recipeName;
 
-                    btn.GetComponent<Button>().onClick.AddListener(() => LoadData.SelectedRecipe = item);
-                    btn.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene("Recipe"));
+                    recipe.GetComponent<Button>().onClick.AddListener(() => LoadData.SelectedRecipe = item);
+                    recipe.GetComponent<Button>().onClick.AddListener(() => SceneChanger.LoadDisplay(MainScreen.RecipeDisplay));
+                   
                 }
             }
             else
             {
-                GameObject btn = Instantiate(_nothingFoundText, _content);
-                btn.GetComponentInChildren<Text>().text = "<b>Ничего не найдено</b>";
+                GameObject t_nothingFound = Instantiate(g_nothingFoundText, rt_content);
+                t_nothingFound.GetComponentInChildren<Text>().text = "<b>Ничего не найдено</b>";
             }
+
+            BackDisplayForRecipe = MainScreen.NameSearchDisplay;
+            b_btnBack.onClick.AddListener(() => SceneChanger.LoadDisplay(MainScreen.NameSearchDisplay));
 
             Search.nameSearch = null;
         }
         else
         {
-            IEnumerable<Recipe> data = LoadData.Recipes;
+            IEnumerable<Recipe> recipes = LoadData.Recipes;
             if (LoadData.SelectedDesiredIngredients.Count > 0)
             {
-                data = data.Where(r => r.ingredients.Select(r => r.ingredient.ingredientName)
-                           .Intersect(LoadData.SelectedDesiredIngredients)
-                           .Count() == LoadData.SelectedDesiredIngredients.Count());
+                recipes = recipes.Where(r => r.ingredients.Select(r => r.ingredient.ingredientName)
+                                 .Intersect(LoadData.SelectedDesiredIngredients)
+                                 .Count() == LoadData.SelectedDesiredIngredients.Count());
             }
             if (LoadData.SelectedUndesiredIngredients.Count > 0)
             {
-                data = data.Where(r => r.ingredients
-                           .Select(r => r.ingredient.ingredientName)
-                           .Intersect(LoadData.SelectedUndesiredIngredients).Count() == 0);
+                recipes = recipes.Where(r => r.ingredients
+                                 .Select(r => r.ingredient.ingredientName)
+                                 .Intersect(LoadData.SelectedUndesiredIngredients).Count() == 0);
             }
             if (LoadData.SelectedRecipeType != FoodTypes.любая.ToString())
             {
-                data = data.Where(r => Enum.GetName(typeof(FoodTypes), r.type).Equals(LoadData.SelectedRecipeType));
+                recipes = recipes.Where(r => Enum.GetName(typeof(FoodTypes), r.type).Equals(LoadData.SelectedRecipeType));
             }
             if (LoadData.SelectedRecipeNational != NationalTypes.любая.ToString())
             {
-                data = data.Where(r => Enum.GetName(typeof(NationalTypes), r.national).Equals(LoadData.SelectedRecipeNational));
+                recipes = recipes.Where(r => Enum.GetName(typeof(NationalTypes), r.national).Equals(LoadData.SelectedRecipeNational));
             }
 
-            if (data.Count() > 0)
+            if (recipes.Count() > 0)
             {
-                foreach (var item in data)
+                foreach (var item in recipes)
                 {
-                    GameObject btn = Instantiate(_recipe, _content);
+                    GameObject recipe = Instantiate(g_recipe, rt_content);
 
-                    btn.GetComponentInChildren<Text>().text = item.recipeName;
+                    recipe.GetComponentInChildren<Text>().text = item.recipeName;
 
-                    btn.GetComponent<Button>().onClick.AddListener(() => LoadData.SelectedRecipe = item);
-                    btn.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene("Recipe"));
+                    recipe.GetComponent<Button>().onClick.AddListener(() => LoadData.SelectedRecipe = item);
+                    recipe.GetComponent<Button>().onClick.AddListener(() => SceneChanger.LoadDisplay(MainScreen.RecipeDisplay));
                 }
             }
             else
             {
-                GameObject btn = Instantiate(_nothingFoundText, _content);
-                btn.GetComponentInChildren<Text>().text = "<b>Ничего не найдено</b>";
+                GameObject t_nothingFound = Instantiate(g_nothingFoundText, rt_content);
+                t_nothingFound.GetComponentInChildren<Text>().text = "<b>Ничего не найдено</b>";
             }
+
+            BackDisplayForRecipe = MainScreen.SearchByIngredientsDisplay;
+            b_btnBack.onClick.AddListener(() => SceneChanger.LoadDisplay(MainScreen.SearchByIngredientsDisplay));
+            LoadData.SelectedDesiredIngredients.Clear();
+            LoadData.SelectedUndesiredIngredients.Clear();
         }
   
     }

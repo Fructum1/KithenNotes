@@ -11,19 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Scenes/MainScreen.unity
     guid: b6b6c0d8f9f35254a8ef783a2abe3abc
-  - enabled: 1
-    path: Assets/Resources/Scenes/SearchByIngredients.unity
-    guid: f5d75a4481c5a694a91b5268dab5ac57
-  - enabled: 1
-    path: Assets/Resources/Scenes/NameSearch.unity
-    guid: ca91918a72baf0a4094b250f469ca4b2
-  - enabled: 1
-    path: Assets/Resources/Scenes/Favorites.unity
-    guid: ee45da7b528894443979d6a44905afac
-  - enabled: 1
-    path: Assets/Resources/Scenes/FoundRecipes.unity
-    guid: 56f64abb4592b554fa39452fa698d274
-  - enabled: 1
-    path: Assets/Resources/Scenes/Recipe.unity
-    guid: 004e3c05ae45b044b8a1f8aff31f88d7
   m_configObjects: {}

@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    public void LoadScene()
+    public static void LoadDisplay(RectTransform display)
     {
-        SceneManager.LoadScene(LoadData.PreviousScene);
+        MainScreen.ActiveDisplay.gameObject.SetActive(false);
+        display.gameObject.SetActive(true);
+        MainScreen.ActiveDisplay = display;
     }
 
     public void LoadScene(string scene)
