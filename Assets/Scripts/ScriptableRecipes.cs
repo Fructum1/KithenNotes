@@ -23,10 +23,12 @@ public class ScriptableRecipes : ScriptableObject
         {
             File.Create(FilePath);
             File.WriteAllText(FilePath, dataString);
+            Debug.Log("Successfully");
         }
         else
         {
             File.WriteAllText(FilePath, dataString);
+            Debug.Log("Successfully");
         }
         
     }

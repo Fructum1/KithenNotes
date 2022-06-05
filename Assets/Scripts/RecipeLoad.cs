@@ -100,10 +100,19 @@ public class RecipeLoad : MonoBehaviour
         {
             i_favoriteButtonImage.sprite = s_onFavorite;
         }
+        else
+        {
+            i_favoriteButtonImage.sprite = s_offFavorite;
+        }
+
+        foreach (Transform child in rt_ingredientsContent.transform)
+        {
+            Destroy(child.gameObject);
+        }
 
         foreach (var item in LoadData.SelectedRecipe.ingredients)
         {
-            GameObject recipe = Instantiate(g_text, rt_ingredientsContent) as GameObject;
+            GameObject recipe = Instantiate(g_text, rt_ingredientsContent);
             recipe.GetComponent<Text>().text = item.ingredient.ingredientName + " - " + item.weight.ToString() +" êã.";
         }
         b_btnBack.onClick.AddListener(() => SceneChanger.LoadDisplay(FoundedRecipes.BackDisplayForRecipe));
