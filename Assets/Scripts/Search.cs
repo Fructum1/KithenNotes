@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,16 +7,18 @@ using UnityEngine.UI;
 
 public class Search : MonoBehaviour
 {
-    Button _buttonSearch;
-    Text _searchedName;
     public static string nameSearch;
 
-    void Start() 
-    { 
-        _searchedName = GameObject.Find("SearchedName").GetComponent<Text>();
-        _buttonSearch = GameObject.Find("SubmitSearch").GetComponent<Button>();
-        _buttonSearch.onClick.AddListener(() => nameSearch = _searchedName.text);
+    private Text t_searchedName;
 
-        LoadData.PreviousScene = SceneManager.GetActiveScene().name;
+    void Awake() 
+    { 
+        t_searchedName = GameObject.Find("SearchedName").GetComponent<Text>();
+    }
+
+    public void OnSubmit()
+    {
+        nameSearch = t_searchedName.text;
+        t_searchedName.text = String.Empty;
     }
 }

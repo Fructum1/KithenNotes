@@ -11,79 +11,37 @@ using UnityEngine.UI.Extensions;
 public class AdvencedSearch : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _ingredient;
-    RectTransform _ingredientsDesired;
-    RectTransform _ingredientsUnDesired;
-    RectTransform _scrollViewDesired;
-    RectTransform _scrollViewUnDesired;
-    Dropdown _dropdownRecipeType;
-    Dropdown _dropddownRecipeNational;
-    Text _desiredList;
-    Text _unDesiredList;
-    Text _textSearchUnDesired;
-    Text _textSearchDesired;
-    List<Button> _listOfIngredientsDesired;
-    List<Button> _listOfIngredientsUndesired;
-    List<string> _dropdownRecipeTypeOptions => Enum.GetValues(typeof(FoodTypes)).Cast<FoodTypes>()
+    private GameObject g_ingredient;
+    private RectTransform rt_ingredientsDesired;
+    private RectTransform rt_ingredientsUnDesired;
+    private RectTransform rt_scrollViewDesired;
+    private RectTransform rt_scrollViewUnDesired;
+    private Dropdown d_dropdownRecipeType;
+    private Dropdown d_dropddownRecipeNational;
+    private Text t_desiredList;
+    private Text t_unDesiredList;
+    private Text t_textSearchUnDesired;
+    private Text t_textSearchDesired;
+    private List<Button> b_listOfIngredientsDesired;
+    private List<Button> b_listOfIngredientsUndesired;
+    private List<string> _dropdownRecipeTypeOptions => Enum.GetValues(typeof(FoodTypes)).Cast<FoodTypes>()
                                                                                  .Select(v => v.ToString()).ToList();
-    List<string> _dropdownRecipeNational => Enum.GetValues(typeof(NationalTypes)).Cast<NationalTypes>()
-                                                                                  .Select(v => v.ToString()).ToList();
-    bool _dropdownUnDesiredToggled = false;
-    bool _dropdownDesiredToggled = false;
-
-    private void Start()
-    {
-        LoadData.SelectedDesiredIngredients.Clear();
-        LoadData.SelectedUndesiredIngredients.Clear();
-
-        _scrollViewDesired = GameObject.Find("ScrollViewDesired").GetComponent<RectTransform>();
-        _scrollViewUnDesired = GameObject.Find("ScrollViewUnDesired").GetComponent<RectTransform>();
-        _ingredientsDesired = GameObject.Find("IngredientsDesired").GetComponent<RectTransform>();
-        _ingredientsUnDesired = GameObject.Find("IngredientsUnDesired").GetComponent<RectTransform>();
-        _dropdownRecipeType = GameObject.Find("DropdownType").GetComponent<Dropdown>();
-        _dropddownRecipeNational = GameObject.Find("DropdownNational").GetComponent<Dropdown>();
-        _desiredList = GameObject.Find("DesiredList").GetComponent<Text>();
-        _textSearchDesired = GameObject.Find("TextSearchDesired").GetComponent<Text>();
-        _unDesiredList = GameObject.Find("UnDesiredList").GetComponent<Text>();
-        _textSearchUnDesired = GameObject.Find("TextSearchUnDesired").GetComponent<Text>();
-
-        foreach (var item in LoadData.Ingredients)
-        {
-            GameObject desired = Instantiate(_ingredient, _ingredientsDesired);
-
-            desired.GetComponentInChildren<Text>().text = item;
-            desired.GetComponent<Button>().onClick.AddListener(() => OnIngredientClick(item, true));
-
-            GameObject unDesired = Instantiate(_ingredient, _ingredientsUnDesired);
-
-            unDesired.GetComponentInChildren<Text>().text = item;
-            unDesired.GetComponent<Button>().onClick.AddListener(() => OnIngredientClick(item, false));
-        }
-
-        _listOfIngredientsDesired = _ingredientsDesired.GetComponentsInChildren<Button>().ToList<Button>();
-        _listOfIngredientsUndesired = _ingredientsUnDesired.GetComponentsInChildren<Button>().ToList<Button>();
-        _dropdownRecipeType.ClearOptions();
-        _dropdownRecipeType.AddOptions(_dropdownRecipeTypeOptions);
-        _dropddownRecipeNational.ClearOptions();
-        _dropddownRecipeNational.AddOptions(_dropdownRecipeNational);
-
-        _scrollViewUnDesired.gameObject.SetActive(false);
-        _scrollViewDesired.gameObject.SetActive(false);
-
-        LoadData.PreviousScene = SceneManager.GetActiveScene().name;
-    }
+    private List<string> _dropdownRecipeNational => Enum.GetValues(typeof(NationalTypes)).Cast<NationalTypes>()
+                                                                                 .Select(v => v.ToString()).ToList();
+    private bool _dropdownUnDesiredToggled = false;
+    private bool _dropdownDesiredToggled = false;
 
     public void HideOnInput(bool desired)
     {
         if (desired)
         {
-            _desiredList.gameObject.SetActive(false);
-            _textSearchDesired.gameObject.SetActive(true);
+            t_desiredList.gameObject.SetActive(false);
+            t_textSearchDesired.gameObject.SetActive(true);
         }
         else
         {
-            _unDesiredList.gameObject.SetActive(false);
-            _textSearchUnDesired.gameObject.SetActive(true);
+            t_unDesiredList.gameObject.SetActive(false);
+            t_textSearchUnDesired.gameObject.SetActive(true);
         }
     }
 
@@ -91,13 +49,13 @@ public class AdvencedSearch : MonoBehaviour
     {
         if (desired)
         {
-            _desiredList.gameObject.SetActive(true);
-            _textSearchDesired.gameObject.SetActive(false);
+            t_desiredList.gameObject.SetActive(true);
+            t_textSearchDesired.gameObject.SetActive(false);
         }
         else
         {
-            _unDesiredList.gameObject.SetActive(true);
-            _textSearchUnDesired.gameObject.SetActive(false);
+            t_unDesiredList.gameObject.SetActive(true);
+            t_textSearchUnDesired.gameObject.SetActive(false);
         }
     }
 
@@ -105,12 +63,12 @@ public class AdvencedSearch : MonoBehaviour
     {   
         if (_dropdownDesiredToggled)
         {
-            _scrollViewDesired.gameObject.SetActive(false);
+            rt_scrollViewDesired.gameObject.SetActive(false);
             _dropdownDesiredToggled = !_dropdownDesiredToggled;
         }
         else
         {
-            _scrollViewDesired.gameObject.SetActive(true);
+            rt_scrollViewDesired.gameObject.SetActive(true);
             _dropdownDesiredToggled = !_dropdownDesiredToggled;
         }
     }
@@ -118,30 +76,30 @@ public class AdvencedSearch : MonoBehaviour
     {    
         if (_dropdownUnDesiredToggled)
         {
-            _scrollViewUnDesired.gameObject.SetActive(false);
+            rt_scrollViewUnDesired.gameObject.SetActive(false);
             _dropdownUnDesiredToggled = !_dropdownUnDesiredToggled;
         }
         else
         {
-            _scrollViewUnDesired.gameObject.SetActive(true);
+            rt_scrollViewUnDesired.gameObject.SetActive(true);
             _dropdownUnDesiredToggled = !_dropdownUnDesiredToggled;
         }
     }
     public void LiveSearchUnDesired(string searchedItem)
     {
-        _scrollViewUnDesired.gameObject.SetActive(true);
-        _scrollViewDesired.gameObject.SetActive(false);
+        rt_scrollViewUnDesired.gameObject.SetActive(true);
+        rt_scrollViewDesired.gameObject.SetActive(false);
         _dropdownUnDesiredToggled = true;
         if (!searchedItem.Equals(""))
         {
-            var data = _listOfIngredientsUndesired.Where(i => i.GetComponentInChildren<Text>().text.Split(' ')
+            var data = b_listOfIngredientsUndesired.Where(i => i.GetComponentInChildren<Text>().text.Split(' ')
                                                   .All(i => !i.StartsWith(searchedItem, true, CultureInfo.CurrentCulture)));
             foreach (var item in data)
             {
                 item.gameObject.SetActive(false);
             }
 
-            if (data.Count() == _listOfIngredientsUndesired.Count())
+            if (data.Count() == b_listOfIngredientsUndesired.Count())
             {
                 ShowAllItemsInDropdownMenuUnDesired();
             }
@@ -155,19 +113,19 @@ public class AdvencedSearch : MonoBehaviour
 
     public void LiveSearchDesired(string searchedItem)
     {
-        _scrollViewDesired.gameObject.SetActive(true);
-        _scrollViewUnDesired.gameObject.SetActive(false);
+        rt_scrollViewDesired.gameObject.SetActive(true);
+        rt_scrollViewUnDesired.gameObject.SetActive(false);
         _dropdownDesiredToggled = true;
         if (!searchedItem.Equals(""))
         {
-            var data = _listOfIngredientsDesired.Where(i => i.GetComponentInChildren<Text>().text.Split(' ')
+            var data = b_listOfIngredientsDesired.Where(i => i.GetComponentInChildren<Text>().text.Split(' ')
                                                 .All(i => !i.StartsWith(searchedItem, true, CultureInfo.CurrentCulture)));
             foreach (var item in data)
             {
                 item.gameObject.SetActive(false);
             }
 
-            if (data.Count() == _listOfIngredientsDesired.Count())
+            if (data.Count() == b_listOfIngredientsDesired.Count())
             {
                 ShowAllItemsInDropdownMenuDesired();
             }
@@ -180,52 +138,100 @@ public class AdvencedSearch : MonoBehaviour
 
     public void OnSearchSubmit()
     {
-        LoadData.SelectedRecipeType = _dropdownRecipeType.options[_dropdownRecipeType.value].text;
-        LoadData.SelectedRecipeNational = _dropddownRecipeNational.options[_dropddownRecipeNational.value].text;
+        LoadData.SelectedRecipeType = d_dropdownRecipeType.options[d_dropdownRecipeType.value].text;
+        LoadData.SelectedRecipeNational = d_dropddownRecipeNational.options[d_dropddownRecipeNational.value].text;
+        t_desiredList.text = String.Empty;
+        t_unDesiredList.text = String.Empty;
+        t_textSearchUnDesired.text = String.Empty;
+        t_textSearchDesired.text = String.Empty;
     }
 
     public void ClearListDesired()
     {
         LoadData.SelectedDesiredIngredients.Clear();
-        _desiredList.text = "";
+        t_desiredList.text = String.Empty;
     }
+
     public void ClearListUnDesired()
     {
         LoadData.SelectedUndesiredIngredients.Clear();
-        _unDesiredList.text = "";
+        t_unDesiredList.text = String.Empty;
     }
 
-    void ShowAllItemsInDropdownMenuDesired()
+    private void Awake()
     {
-        foreach (var item in _listOfIngredientsDesired)
+        rt_scrollViewDesired = GameObject.Find("ScrollViewDesired").GetComponent<RectTransform>();
+        rt_scrollViewUnDesired = GameObject.Find("ScrollViewUnDesired").GetComponent<RectTransform>();
+        rt_ingredientsDesired = GameObject.Find("IngredientsDesired").GetComponent<RectTransform>();
+        rt_ingredientsUnDesired = GameObject.Find("IngredientsUnDesired").GetComponent<RectTransform>();
+        d_dropdownRecipeType = GameObject.Find("DropdownType").GetComponent<Dropdown>();
+        d_dropddownRecipeNational = GameObject.Find("DropdownNational").GetComponent<Dropdown>();
+        t_desiredList = GameObject.Find("DesiredList").GetComponent<Text>();
+        t_textSearchDesired = GameObject.Find("TextSearchDesired").GetComponent<Text>();
+        t_unDesiredList = GameObject.Find("UnDesiredList").GetComponent<Text>();
+        t_textSearchUnDesired = GameObject.Find("TextSearchUnDesired").GetComponent<Text>();
+
+        foreach (var item in LoadData.Ingredients)
+        {
+            GameObject desired = Instantiate(g_ingredient, rt_ingredientsDesired);
+
+            desired.GetComponentInChildren<Text>().text = item;
+            desired.GetComponent<Button>().onClick.AddListener(() => OnIngredientClick(item, true));
+
+            GameObject unDesired = Instantiate(g_ingredient, rt_ingredientsUnDesired);
+
+            unDesired.GetComponentInChildren<Text>().text = item;
+            unDesired.GetComponent<Button>().onClick.AddListener(() => OnIngredientClick(item, false));
+        }
+
+        b_listOfIngredientsDesired = rt_ingredientsDesired.GetComponentsInChildren<Button>().ToList<Button>();
+        b_listOfIngredientsUndesired = rt_ingredientsUnDesired.GetComponentsInChildren<Button>().ToList<Button>();
+        d_dropdownRecipeType.ClearOptions();
+        d_dropdownRecipeType.AddOptions(_dropdownRecipeTypeOptions);
+        d_dropddownRecipeNational.ClearOptions();
+        d_dropddownRecipeNational.AddOptions(_dropdownRecipeNational);
+
+        rt_scrollViewUnDesired.gameObject.SetActive(false);
+        rt_scrollViewDesired.gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        LoadData.SelectedDesiredIngredients.Clear();
+        LoadData.SelectedUndesiredIngredients.Clear();
+    }
+
+    private void ShowAllItemsInDropdownMenuDesired()
+    {
+        foreach (var item in b_listOfIngredientsDesired)
         {
             item.gameObject.SetActive(true);
         }
     }
-    void ShowAllItemsInDropdownMenuUnDesired()
+    private void ShowAllItemsInDropdownMenuUnDesired()
     {
-        foreach (var item in _listOfIngredientsUndesired)
+        foreach (var item in b_listOfIngredientsUndesired)
         {
             item.gameObject.SetActive(true);
         }
     }
 
-    void OnIngredientClick(string ingredientName, bool desired)
+    private void OnIngredientClick(string ingredientName, bool desired)
     {
         if (desired)
         {
             if (!LoadData.SelectedDesiredIngredients.Contains(ingredientName))
             {
                 LoadData.SelectedDesiredIngredients.Add(ingredientName);               
-                _desiredList.text = String.Join(", ", LoadData.SelectedDesiredIngredients);
-                _textSearchDesired.text = "";
+                t_desiredList.text = String.Join(", ", LoadData.SelectedDesiredIngredients);
+                t_textSearchDesired.text = String.Empty;
                 ShowAllItemsInDropdownMenuDesired();
             }
             else
             {
                 LoadData.SelectedDesiredIngredients.Remove(ingredientName);
-                _desiredList.text = String.Join(", ", LoadData.SelectedDesiredIngredients);
-                _textSearchDesired.text = "";
+                t_desiredList.text = String.Join(", ", LoadData.SelectedDesiredIngredients);
+                t_textSearchDesired.text = String.Empty;
                 ShowAllItemsInDropdownMenuDesired();
             }
         }
@@ -234,15 +240,15 @@ public class AdvencedSearch : MonoBehaviour
             if (!LoadData.SelectedUndesiredIngredients.Contains(ingredientName))
             {
                 LoadData.SelectedUndesiredIngredients.Add(ingredientName);
-                _unDesiredList.text = String.Join(", ", LoadData.SelectedUndesiredIngredients);
-                _textSearchUnDesired.text = "";
+                t_unDesiredList.text = String.Join(", ", LoadData.SelectedUndesiredIngredients);
+                t_textSearchUnDesired.text = String.Empty;
                 ShowAllItemsInDropdownMenuUnDesired();
             }
             else
             {
                 LoadData.SelectedUndesiredIngredients.Remove(ingredientName);
-                _unDesiredList.text = String.Join(", ", LoadData.SelectedUndesiredIngredients);
-                _textSearchUnDesired.text = "";
+                t_unDesiredList.text = String.Join(", ", LoadData.SelectedUndesiredIngredients);
+                t_textSearchUnDesired.text = String.Empty;
                 ShowAllItemsInDropdownMenuUnDesired();
             }
         }

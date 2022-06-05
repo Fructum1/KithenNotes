@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\FoundedRecipes.cs" />
     <Compile Include="Assets\Scripts\Search.cs" />
     <Compile Include="Assets\Scripts\SceneChanger.cs" />
+    <Compile Include="Assets\Scripts\MainScreen.cs" />
     <Compile Include="Assets\Scripts\Favorites.cs" />
     <Compile Include="Assets\Scripts\AdvencedSearch.cs" />
     <Compile Include="Assets\Scripts\ScriptableRecipes.cs" />

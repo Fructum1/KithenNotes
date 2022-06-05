@@ -44,17 +44,19 @@ public class LoadData : MonoBehaviour
     public static Recipe SelectedRecipe = null;
     public static List<string> SelectedDesiredIngredients = new List<string>();
     public static List<string> SelectedUndesiredIngredients = new List<string>();
-    public static List<Recipe> Recipes = new List<Recipe>();
     public static List<string> Ingredients = new List<string>();
+    public static List<Recipe> Recipes = new List<Recipe>();
+    public static List<Recipe> favoriteResipes = new List<Recipe>();
 
-    void Start()
+
+    void Awake()
     {
         Recipes.Clear();
         Ingredients.Clear();
-        Favorites.favoriteResipes.Clear();
-        string recipesJson = "";
-        string ingredientsJson = "";
-        string favoritesJson = "";
+
+        string recipesJson = string.Empty;
+        string ingredientsJson = string.Empty;
+        string favoritesJson = string.Empty;
 
         if (System.IO.File.Exists(Application.persistentDataPath + "/favoritesRecipes.json"))
         {
@@ -77,16 +79,15 @@ public class LoadData : MonoBehaviour
             Recipes.Add(recipess.recipes[i]);
         }
 
-        if (!favoritesJson.Equals(""))
+        if (!favoritesJson.Equals(string.Empty))
         {
             var favoritesRecipes = JsonUtility.FromJson<RecipeSet>(favoritesJson);
             for (int i = 0; i < favoritesRecipes.recipes.Count; i++)
             {
-                Favorites.favoriteResipes.Add(favoritesRecipes.recipes[i]);
+                favoriteResipes.Add(favoritesRecipes.recipes[i]);
             }
         }
 
         SceneManager.LoadScene("MainScreen");
-
     }
 }
