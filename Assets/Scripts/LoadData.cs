@@ -33,7 +33,7 @@ public enum NationalTypes
     Паназиатская,
     Кавказская,
     Мексиканская,
-    Экзотическая,
+    Американская,
 }
 
 public class LoadData : MonoBehaviour

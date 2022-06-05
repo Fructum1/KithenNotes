@@ -303,6 +303,98 @@
         {
             "id": 76,
             "ingredientName": "Лайм"
+        },
+        {
+            "id": 77,
+            "ingredientName": "Рис аброрио"
+        },
+        {
+            "id": 78,
+            "ingredientName": "Белое сухое вино"
+        },
+        {
+            "id": 79,
+            "ingredientName": "Куриный бульон"
+        },
+        {
+            "id": 80,
+            "ingredientName": "Вода"
+        },
+        {
+            "id": 81,
+            "ingredientName": "Сухие дрожжи"
+        },
+        {
+            "id": 82,
+            "ingredientName": "Отварной картофель"
+        },
+        {
+            "id": 83,
+            "ingredientName": "Сыр сулугуни"
+        },
+        {
+            "id": 84,
+            "ingredientName": "Имеретинский сыр"
+        },
+        {
+            "id": 85,
+            "ingredientName": "Топленое масло"
+        },
+        {
+            "id": 86,
+            "ingredientName": "Черный шоколад 70%-ный"
+        },
+        {
+            "id": 87,
+            "ingredientName": "Разрыхлитель"
+        },
+        {
+            "id": 88,
+            "ingredientName": "Яблоко"
+        },
+        {
+            "id": 89,
+            "ingredientName": "Бриошь"
+        },
+        {
+            "id": 90,
+            "ingredientName": "Стручковая фасоль"
+        },
+        {
+            "id": 91,
+            "ingredientName": "Салат пак-чой"
+        },
+        {
+            "id": 92,
+            "ingredientName": "Мини-кукуруза"
+        },
+        {
+            "id": 93,
+            "ingredientName": "Ростки сои"
+        },
+        {
+            "id": 94,
+            "ingredientName": "Устричный соус"
+        },
+        {
+            "id": 95,
+            "ingredientName": "Лапша удон"
+        },
+        {
+            "id": 96,
+            "ingredientName": "Розмарин"
+        },
+        {
+            "id": 97,
+            "ingredientName": "Замороженные креветки"
+        },
+        {
+            "id": 98,
+            "ingredientName": "Сгущенное молоко"
+        },
+        {
+            "id": 99,
+            "ingredientName": "Апельсин"
         }
     ]
 }
