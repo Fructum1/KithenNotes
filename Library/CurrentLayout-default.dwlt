@@ -19,7 +19,11 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
+<<<<<<< HEAD
   m_Title: Project
+=======
+  m_Title: Inspector
+>>>>>>> parent of 2cdd580 (favorites fix)
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
@@ -75,7 +79,11 @@ MonoBehaviour:
   m_MinSize: {x: 677, y: 492}
   m_MaxSize: {x: 14001, y: 14042}
   vertical: 0
+<<<<<<< HEAD
   controlID: 103
+=======
+  controlID: 122
+>>>>>>> parent of 2cdd580 (favorites fix)
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -227,7 +235,11 @@ MonoBehaviour:
   m_MinSize: {x: 402, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
+<<<<<<< HEAD
   controlID: 104
+=======
+  controlID: 58
+>>>>>>> parent of 2cdd580 (favorites fix)
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -252,7 +264,11 @@ MonoBehaviour:
   m_MinSize: {x: 402, y: 221}
   m_MaxSize: {x: 8002, y: 4021}
   vertical: 0
+<<<<<<< HEAD
   controlID: 105
+=======
+  controlID: 59
+>>>>>>> parent of 2cdd580 (favorites fix)
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -481,10 +497,17 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
+<<<<<<< HEAD
     scrollPos: {x: 0, y: 30}
     m_SelectedIDs: fe4c0000
     m_LastClickedID: 19710
     m_ExpandedIDs: 000000002a4c00002c4c00002e4c0000304c0000324c000000ca9a3b
+=======
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: c45e0000
+    m_LastClickedID: 24260
+    m_ExpandedIDs: 00000000f25d0000f45d0000f65d000000ca9a3b
+>>>>>>> parent of 2cdd580 (favorites fix)
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -512,7 +535,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 000000002a4c00002c4c00002e4c0000304c0000324c0000
+=======
+    m_ExpandedIDs: 00000000f25d0000f45d0000f65d0000
+>>>>>>> parent of 2cdd580 (favorites fix)
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -596,9 +623,15 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
       m_SelectedIDs: 
       m_LastClickedID: 0
       m_ExpandedIDs: 504bfeff6a4bfeff704bfeff784bfeff344cfeffb652feff0453feff2453feffe654feff5ee3feffeefffeffd800ffff6a08ffffa415ffffda15ffff1c23ffffe024ffff8c2fffffd22fffffec2fffffb231ffffba31ffff7e32ffff5a37ffff7444ffff9844ffffda44fffff444ffffb646ffffba46ffffdc57ffff2a59ffff5667ffffd468ffff067bffff627dffffe08cffff8691ffff8aa8ffff7caaffffbab8ffff32bcffffeecbffff98ccffffe8d9ffffcadaffff64e7ffff4ce8ffff62fbffff6247000084470000064800004c480000604800007e48000092480000a448000042490000aa490000084b0000b47400002e7500000e7600002076000058760000d27600002677000074790000ee790000ce7a0000e07a0000187b0000927b0000e67b000030890000068a0000288b0000948b0000d69100000c9800002c990000a69900006a9a0000b29b0000c89b000028ac00003aac000062ac0000b8ac000028ad00006aad0000a2ad0000b4ad0000b8ad000066ae000020af000032af0000d2ba0000aebb000012bd000038bd000052bd0000a6bd0000baca000052cc000078cc0000e6cc00002acd000050d900002cda0000d0db000024dc000048ed000024ee0000c8ef00001cf00000620f0100ec120100622001004221010054210100062201005a220100ee220100fc230100d0400100d8400100e2400100c4410100364e010086500100bc500100f45001004e510100de5901002e5c0100645c01009c5c0100f65c01000e940100ec940100cc950100de95010090960100e4960100
+=======
+      m_SelectedIDs: c8e50000
+      m_LastClickedID: 58824
+      m_ExpandedIDs: 3854ffff5254fffff855ffff9456ffff0057ffffa464ffff38c5ffff4ad2ffffced2ffff80d3ffff62dfffff4ce0ffff2ef1ffff76f1ffff90f1ffff50f3ffff54f3ffff1cf5ffffc67a00005c7c00004e7d0000488d0000d092000082970000eaa3000082a4000004a500007ca5000090a500005ea6000070a60000a8a600005ea7000004a8000036e60000
+>>>>>>> parent of 2cdd580 (favorites fix)
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -658,9 +691,15 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: 510.23184, y: 213.22768, z: -237.18231}
     speed: 2
     m_Value: {x: 510.23184, y: 213.22768, z: -237.18231}
+=======
+    m_Target: {x: 691.5291, y: 1635.1362, z: -2578.7263}
+    speed: 2
+    m_Value: {x: 691.5291, y: 1635.1362, z: -2578.7263}
+>>>>>>> parent of 2cdd580 (favorites fix)
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -711,9 +750,15 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
+<<<<<<< HEAD
     m_Target: 867.684
     speed: 2
     m_Value: 867.684
+=======
+    m_Target: 543.84753
+    speed: 2
+    m_Value: 543.84753
+>>>>>>> parent of 2cdd580 (favorites fix)
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -805,10 +850,17 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
+<<<<<<< HEAD
       width: 919
       height: 634
     m_Scale: {x: 0.7778085, y: 0.7778085}
     m_Translation: {x: 459.5, y: 840.03314}
+=======
+      width: 688.4
+      height: 414
+    m_Scale: {x: 0.23958331, y: 0.23958333}
+    m_Translation: {x: 344.2, y: 207}
+>>>>>>> parent of 2cdd580 (favorites fix)
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
